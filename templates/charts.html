@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block chart1 %} 
+    <script type="text/javascript">
+        google.charts.load("current", {packages:["corechart"]});
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                {% for key, value in data.pie.items() %}
+                    {% if value is string %}
+                        ['{{ key }}', '{{ value }}'],
+                    {% else %}
+                        ['{{ key }}', {{ value }}],
+                    {% endif %}
+                {% endfor %}
+            ]);
+
+            var options = {
+                title: 'My Daily Activities',
+                is3D: true,
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('piechart3d'));
+            chart.draw(data, options);
+        }
+    </script>
+{% endblock %}
+
+{% block chart2 %} 
+    <script type="text/javascript">
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart2);
+
+        function drawChart2() {
+            var data = google.visualization.arrayToDataTable([
+                {% for items in data.candle %}
+                    [
+                    {% for ele in items %}
+                        {% if ele is string %}
+                            '{{ ele }}', 
+                        {% else %}
+                            {{ ele }}, 
+                        {% endif %}
+                    {% endfor %}
+                    ], 
+                {% endfor %}
+            ], true);
+
+            var options = {
+                legend:'none'
+            };
+
+            var chart2 = new google.visualization.CandlestickChart(document.getElementById('candleStick'));
+
+            chart2.draw(data, options);
+        }
+
+
+    </script>
+
+{% endblock %}
+
+{% block content %}
+    <h1>Charts</h1>
+    <div id="piechart3d" style="width: 900px; height: 500px;"></div>
+    <div id="candleStick" style="width: 900px; height: 500px;"></div>
+
+{% endblock %}
