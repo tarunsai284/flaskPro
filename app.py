@@ -14,7 +14,7 @@ def about():
 @app.route('/charts')
 def charts():
     data = {
-        "pie": {
+        "pie": {            #connect with the mongo db (find USD query??)
             'Task' : 'Hours per Day',
             'Work' : 11, 
             'Eat' : 2, 
@@ -22,7 +22,7 @@ def charts():
             'Watching TV' : 2, 
             'Sleeping' : 7
         },
-        "candle": [
+        "candle": [         #connect with mongo db??
             ['Mon', 20, 28, 38, 45],
             ['Tue', 31, 38, 55, 66],
             ['Wed', 50, 55, 77, 80],
