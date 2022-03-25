@@ -1,9 +1,19 @@
 from flask import Flask, jsonify, request, render_template
+from mongoClient import setupMongoClient
+from logging.config import fileConfig
+import logging
+
 
 app = Flask(__name__)
+app.config.from_object('config')
+fileConfig('logging.cfg')
+db = setupMongoClient(app)
+
 
 @app.route('/')
 def index():
+    app.logger.debug("Jelkvn sdl v")
+    app.logger.debug(db.list_collection_names())
     return render_template('home.html')
 
 
@@ -11,8 +21,10 @@ def index():
 def about():
     return render_template('about.html')
 
-@app.route('/charts')
+@app.route('/charts/{param}')
 def charts():
+    app.logger.debug("Jelkvn sdl v")
+    db.query({})
     data = {
         "pie": {            #connect with the mongo db (find USD query??)
             'Task' : 'Hours per Day',
@@ -31,6 +43,9 @@ def charts():
         ]
     }
     return render_template('charts.html', data=data)
+
+@app.route('/mongo/delete/{}')
+
 
 if __name__ == "__main__":
     app.run()

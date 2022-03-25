@@ -1,0 +1,2 @@
+# MonogDb collections
+OHLCV = "OHLCV"
