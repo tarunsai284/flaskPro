@@ -6,7 +6,7 @@ import logging
 
 app = Flask(__name__)
 app.config.from_object('config')
-fileConfig('logging.cfg')
+# fileConfig('logging.cfg')
 db = setupMongoClient(app)
 
 
@@ -21,10 +21,9 @@ def index():
 def about():
     return render_template('about.html')
 
-@app.route('/charts/{param}')
+@app.route('/charts/')
 def charts():
     app.logger.debug("Jelkvn sdl v")
-    db.query({})
     data = {
         "pie": {            #connect with the mongo db (find USD query??)
             'Task' : 'Hours per Day',
@@ -45,4 +44,5 @@ def charts():
     return render_template('charts.html', data=data)
 
 if __name__ == "__main__":
+    print("app")
     app.run()

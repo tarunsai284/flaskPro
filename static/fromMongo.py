@@ -1,4 +1,4 @@
-import requests
+# import requests
 import time
 from pymongo import MongoClient
 
