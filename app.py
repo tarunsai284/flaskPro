@@ -44,8 +44,5 @@ def charts():
     }
     return render_template('charts.html', data=data)
 
-@app.route('/mongo/delete/{}')
-
-
 if __name__ == "__main__":
     app.run()
