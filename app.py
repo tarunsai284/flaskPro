@@ -6,7 +6,6 @@ import logging
 
 app = Flask(__name__)
 app.config.from_object('config')
-# fileConfig('logging.cfg')
 db = setupMongoClient(app)
 
 

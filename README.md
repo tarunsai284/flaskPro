@@ -5,6 +5,8 @@ Flask app for Crypto tracking
 ## Pre requisites
 Make sure you have stable python version with pip, pyenv.
 
+## Create a virtual env
+Add your virtual env to gitignore
 ## Installation
 Use the following command to activate your programming environment
 ```
