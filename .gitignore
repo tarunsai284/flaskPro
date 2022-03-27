@@ -1,3 +1,4 @@
 # Distribution / packaging
 pythonEnv
 logs
+.venv
