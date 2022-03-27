@@ -1,18 +1,22 @@
+from asyncio import constants
 from flask import Flask, jsonify, request, render_template
-from mongoClient import setupMongoClient
-from logging.config import fileConfig
-import logging
+from static.mongoClient import setupMongoClient
+import static.mongoDBLayer as mongoLayer
+import logging, logging.config, constants, yaml
+
 
 
 app = Flask(__name__)
 app.config.from_object('config')
 db = setupMongoClient(app)
+collection = db[constants.OHLCV]
 
+with open('./static/logConfig.yaml', 'r') as f:
+    config = yaml.safe_load(f.read())
+    logging.config.dictConfig(config)
 
 @app.route('/')
 def index():
-    app.logger.debug("Jelkvn sdl v")
-    app.logger.debug(db.list_collection_names())
     return render_template('home.html')
 
 
@@ -22,7 +26,7 @@ def about():
 
 @app.route('/charts/')
 def charts():
-    app.logger.debug("Jelkvn sdl v")
+    logging.debug("Charts")
     data = {
         "pie": {            #connect with the mongo db (find USD query??)
             'Task' : 'Hours per Day',
@@ -41,6 +45,13 @@ def charts():
         ]
     }
     return render_template('charts.html', data=data)
+
+@app.route('/mongo')
+def mongo():
+    fromTimeStamp=1609459200000
+    toTimestamp=1640995200000
+    data = mongoLayer.getCrytoDataForTimeRange(collection, "BTC", fromTimeStamp, toTimestamp)
+    return render_template('mongo.html', data=data)
 
 if __name__ == "__main__":
     print("app")

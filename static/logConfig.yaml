@@ -1,0 +1,31 @@
+"version": 1
+"disable_existing_loggers": True
+"formatters": 
+    "default":
+        "format": "[%(asctime)s] %(levelname)s in %(module)s: %(message)s"
+    "access":
+        "format": "%(message)s"
+"handlers":
+    "console":
+        "level": "DEBUG"
+        "class": "logging.StreamHandler"
+        "formatter": "default"
+        "stream": "ext://sys.stdout"
+    "access_file":
+        "class": "logging.handlers.RotatingFileHandler"
+        "formatter": "access"
+        "filename": "./logs/flask.log"
+        "maxBytes": 10000
+        "backupCount": 2
+        "delay": "True"
+"loggers":
+    "sampleLogger":
+        "handlers": ["console", "access_file"]
+        "level": "DEBUG"
+        "propagate": False
+"root":
+    "level": "DEBUG"
+    "handlers": ["console"]
+"monogDBLayer":
+    "level": "DEBUG"
+    "handlers": ["console"]
