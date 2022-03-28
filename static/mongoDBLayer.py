@@ -33,3 +33,34 @@ def getCrytoDataForTimeRange(collection, symbol=None, fromTimeStamp=None, toTime
         print(e)
 
     return result
+
+
+def getCrytoDataForTimeRangeProjection(collection, symbol=None, fromTimeStamp=None, toTimestamp=None, 
+    projection={}, sortTimestamp=pymongo.ASCENDING):
+
+    query={}
+    result={}
+    try: 
+        if(collection==None): raise ValueError("Collection cannont be null")
+        if(is_full_string(symbol)): query["symbol"] = symbol
+
+        if(toTimestamp==None): toTimestamp = int(time.time()*1000)
+        if(fromTimeStamp==None): fromTimeStamp = toTimestamp-31536000000
+
+        query["timestamp"] = { "$gte": fromTimeStamp, "$lte": toTimestamp }
+        print("query: {}".format(query))
+
+        if(projection):
+            if(sortTimestamp!=pymongo.ASCENDING): 
+                result = collection.find(query,projection).sort("timestamp",sortTimestamp)
+            else: result = collection.find(query,projection)
+        else:
+            if(sortTimestamp!=pymongo.ASCENDING): 
+                result = collection.find(query).sort("timestamp",sortTimestamp)
+            else: result = collection.find(query)
+    except ValueError as e: 
+        print(e)
+    except Exception as e:
+        print(e)
+
+    return result

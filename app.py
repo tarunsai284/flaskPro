@@ -1,9 +1,8 @@
-from asyncio import constants
-from flask import Flask, jsonify, request, render_template
+from flask import Flask, jsonify, request, render_template, Response
+import logging, logging.config, constants, yaml 
 from static.mongoClient import setupMongoClient
 import static.mongoDBLayer as mongoLayer
-import logging, logging.config, constants, yaml
-
+import services.plotlyChartService as plotlyChartService
 
 
 app = Flask(__name__)
@@ -52,6 +51,11 @@ def mongo():
     toTimestamp=1640995200000
     data = mongoLayer.getCrytoDataForTimeRange(collection, "BTC", fromTimeStamp, toTimestamp)
     return render_template('mongo.html', data=data)
+
+@app.route('/plotlyChart')
+def matChart():
+    graphJSON = plotlyChartService.plotlyChartService(collection)
+    return render_template('plotlyChart.html', graphJSON=graphJSON)
 
 if __name__ == "__main__":
     print("app")
