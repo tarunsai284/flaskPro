@@ -2,7 +2,11 @@ from flask import Flask, jsonify, request, render_template, Response
 import logging, logging.config, constants, yaml 
 from static.mongoClient import setupMongoClient
 import static.mongoDBLayer as mongoLayer
-import services.plotlyChartService as plotlyChartService
+import services.btcChartService as btcChartService
+import services.bnbChartService as bnbChartService
+import services.ethChartService as ethChartService
+import services.ltcChartService as ltcChartService
+import services.neoChartService as neoChartService
 
 
 app = Flask(__name__)
@@ -52,10 +56,35 @@ def mongo():
     data = mongoLayer.getCrytoDataForTimeRange(collection, "BTC", fromTimeStamp, toTimestamp)
     return render_template('mongo.html', data=data)
 
-@app.route('/plotlyChart')
-def matChart():
-    graphJSON = plotlyChartService.plotlyChartService(collection)
-    return render_template('plotlyChart.html', graphJSON=graphJSON)
+@app.route('/btcChart')
+def btcChart():
+    graphJSON = {"line": btcChartService.plotlyChartService(collection),
+                "candle": btcChartService.plotlyChartServiceCandle(collection)}
+    return render_template('btcChart.html', graphJSON=graphJSON)
+
+@app.route('/bnbChart')
+def bnbChart():
+    graphJSON = {"line": bnbChartService.plotlyChartService(collection),
+                "candle": bnbChartService.plotlyChartServiceCandle(collection)}
+    return render_template('bnbChart.html', graphJSON=graphJSON)
+
+@app.route('/ethChart')
+def ethChart():
+    graphJSON = {"line": ethChartService.plotlyChartService(collection),
+                "candle": ethChartService.plotlyChartServiceCandle(collection)}
+    return render_template('ethChart.html', graphJSON=graphJSON)
+
+@app.route('/ltcChart')
+def ltcChart():
+    graphJSON = {"line": ltcChartService.plotlyChartService(collection),
+                "candle": ltcChartService.plotlyChartServiceCandle(collection)}
+    return render_template('ltcChart.html', graphJSON=graphJSON)
+
+@app.route('/neoChart')
+def neoChart():
+    graphJSON = {"line": neoChartService.plotlyChartService(collection),
+                "candle": neoChartService.plotlyChartServiceCandle(collection)}
+    return render_template('neoChart.html', graphJSON=graphJSON)
 
 if __name__ == "__main__":
     print("app")
