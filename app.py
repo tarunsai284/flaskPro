@@ -57,9 +57,9 @@ def mongo():
     data = mongoLayer.getCrytoDataForTimeRange(collection, "BTC", fromTimeStamp, toTimestamp)
     return render_template('mongo.html', data=data)
 
-@app.route('/cryptoChart')   #, methods=['GET', 'POST']
+@app.route('/cryptoChart', methods=['GET', 'POST'])   #, methods=['GET', 'POST']
 def cryptoChart():
-    symbolGet = request.args.get('crypto_select')
+    symbolGet = request.args.get("crypto_select")
     graphJSON = {"line": cryptoChartService.plotlyChartService(collection, symbolGet),
                 "candle": cryptoChartService.plotlyChartServiceCandle(collection, symbolGet)}
     return render_template('cryptoChart.html', graphJSON=graphJSON)
