@@ -6,6 +6,29 @@
             <div id='chart-content' class='chart-content'”></div>
         </div>
     </div>
+    <body>
+
+        <form action="/cryptoChart" id="cryptoList">
+            <div>
+                <label for="types">Please select one currency</label><br>
+                <input type="radio" id="crypto_type" name="crypto_select" value="BTC" checked>
+                <label for="btc"> Bitcoin</label><br>
+                <input type="radio" id="crypto_type" name="crypto_select" value="BNB">
+                <label for="bnb"> BNB</label><br>
+                <input type="radio" id="crypto_type" name="crypto_select" value="ETH">
+                <label for="eth"> Ethereum</label><br>
+                <input type="radio" id="crypto_type" name="crypto_select" value="LTC">
+                <label for="ltc"> Litecoin</label><br>
+                <input type="radio" id="crypto_type" name="crypto_select" value="NEO">
+                <label for="neo"> NEO</label><br>
+                <p></p>
+            </div>
+            <div>
+                <button type="submit">OK</button>
+            </div>
+        </form><br>
+        
+    </body>
 {% endblock %}
 
 {% block chart1 %} 
