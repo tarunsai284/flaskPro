@@ -2,7 +2,8 @@ from flask import Flask, jsonify, request, render_template, Response
 import logging, logging.config, constants, yaml 
 from static.mongoClient import setupMongoClient
 import static.mongoDBLayer as mongoLayer
-import services.btcChartService as btcChartService
+import services.cryptoChartService as cryptoChartService
+#import services.btcChartService as btcChartService
 import services.bnbChartService as bnbChartService
 import services.ethChartService as ethChartService
 import services.ltcChartService as ltcChartService
@@ -56,11 +57,12 @@ def mongo():
     data = mongoLayer.getCrytoDataForTimeRange(collection, "BTC", fromTimeStamp, toTimestamp)
     return render_template('mongo.html', data=data)
 
-@app.route('/btcChart')
-def btcChart():
-    graphJSON = {"line": btcChartService.plotlyChartService(collection),
-                "candle": btcChartService.plotlyChartServiceCandle(collection)}
-    return render_template('btcChart.html', graphJSON=graphJSON)
+@app.route('/cryptoChart')   #, methods=['GET', 'POST']
+def cryptoChart():
+    symbolGet = request.args.get('crypto_select')
+    graphJSON = {"line": cryptoChartService.plotlyChartService(collection, symbolGet),
+                "candle": cryptoChartService.plotlyChartServiceCandle(collection, symbolGet)}
+    return render_template('cryptoChart.html', graphJSON=graphJSON)
 
 @app.route('/bnbChart')
 def bnbChart():
