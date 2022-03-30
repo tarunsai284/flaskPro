@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col">
+            <div id='chart-content' class='chart-content'”></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block chart1 %} 
+    <script type='text/javascript'>
+        var graphs = {{graphJSON.line | safe}};
+        Plotly.plot('chart-content',graphs,{});
+    </script>
+{% endblock %}
+
+{% block chart2 %} 
+    <script type='text/javascript'>
+        var graphs = {{graphJSON.candle | safe}};
+        Plotly.plot('chart-content',graphs,{});
+    </script>
+{% endblock %}
