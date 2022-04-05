@@ -1,10 +1,11 @@
 import json, plotly
+from turtle import title
 import static.mongoDBLayer as mongoLayer
 import plotly.express as px
 import plotly.graph_objects as go
 import datetime, time
 
-def plotlyChartService(collection):
+def plotlyChartService(collection, title=None):
     fromTimeStamp=1609459200000
     toTimestamp=1640995200000
     projection = {"timestamp": 1, "close": 1}
@@ -17,6 +18,7 @@ def plotlyChartService(collection):
         chartData["Closing Price"].append(ele.get("close"))     #yAxis
 
     fig = px.line(chartData, x='Date', y='Closing Price')
+  
 
     graphJSONln = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
     return graphJSONln

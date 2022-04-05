@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container" style="position: absolute;">
+        <div class="row">
+            <div class="col">
+                    [
+                    <p>
+                    {% for documents in data %}
+
+                        <p>{
+                        {% for key, value in documents.items() %}
+                            {% if value is string %}
+                                '{{ key }}', '{{ value }}',
+
+                            {% else %}
+                                '{{ key }}', {{ value }},
+
+                            {% endif %}
+                        {% endfor %}
+                        },</p>
+
+                    {% endfor %}
+                    </p>
+                    ]
+            </div>
+        </div>
+        <h1 style="position: absolute;">Mongo Output for visualisation</h1>
+    </div>
+  
+
+    ........
+{% endblock %}

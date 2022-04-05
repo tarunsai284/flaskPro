@@ -15,13 +15,18 @@ app.config.from_object('config')
 db = setupMongoClient(app)
 collection = db[constants.OHLCV]
 
-with open('./static/logConfig.yaml', 'r') as f:
+with open('C:/Users/ASUS/Downloads/Github/flaskPro/static/logConfig.yaml', 'r') as f:
     config = yaml.safe_load(f.read())
     logging.config.dictConfig(config)
 
 @app.route('/')
 def index():
     return render_template('home.html')
+
+
+@app.route('/team')
+def team():
+    return render_template('team.html')
 
 
 @app.route('/about')

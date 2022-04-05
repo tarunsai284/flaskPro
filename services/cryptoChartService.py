@@ -16,7 +16,7 @@ def plotlyChartService(collection, symbol):
         chartData["Date"].append(dateConv) #xAxis
         chartData["Closing Price"].append(ele.get("close"))     #yAxis
 
-    fig = px.line(chartData, x='Date', y='Closing Price')
+    fig = px.line(chartData, x='Date', y='Closing Price')# width=2000, height=600
 
     graphJSONln = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
     return graphJSONln

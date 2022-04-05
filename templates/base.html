@@ -9,29 +9,34 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <title>Crypto</title>
+
+   <link rel="stylesheet" href="style.css">
  
   </head>
-  <body>
-    <nav class="navbar navbar-expand-md navbar-light bg-light">
-        <a class="navbar-brand" href="{{ url_for('index')}}">Home</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+  <body  style="background-color:#0d0d2b;">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top" style="background-color: #0d0d2b !important;">
+        <a class="navbar-brand text-white h1" href="{{ url_for('index')}}" style="font-size: 30px !important;">Crypto</a>
+        <button class="navbar-toggler " type="button"  data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon "></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="collapse navbar-collapse " id="navbarNav">
             <ul class="navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link" href="{{ url_for('about')}}">About</a>
+                <a class="nav-link text-white h3" href="{{ url_for('about')}}">About</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="{{ url_for('mongo')}}">Mongo</a>
+                <a class="nav-link text-white h3" href="{{ url_for('mongo')}}">Mongo</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="{{ url_for('cryptoChart')}}">Crypto Chart</a>
+                <a class="nav-link text-white h3" href="{{ url_for('cryptoChart')}}">Crypto Chart</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link text-white h3" href="{{ url_for('team')}}">Team</a>
             </li>
             </ul>
         </div>
     </nav>
-    <div class="container">
+    <div class="" style="margin-top: 30px; width: 1800px; margin-left: 50px;">
         {% block content %} {% endblock %}
     </div>
 
