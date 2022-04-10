@@ -33,43 +33,20 @@ def team():
 def about():
     return render_template('about.html')
 
-@app.route('/mongo')
-def mongo():
-    fromTimeStamp=1609459200000
-    toTimestamp=1640995200000
-    data = mongoLayer.getCrytoDataForTimeRange(collection, "BTC", fromTimeStamp, toTimestamp)
-    return render_template('mongo.html', data=data)
+# @app.route('/mongo')
+# def mongo():
+#     fromTimeStamp=1609459200000
+#     toTimestamp=1640995200000
+#     data = mongoLayer.getCrytoDataForTimeRange(collection, "BTC", fromTimeStamp, toTimestamp)
+#     return render_template('mongo.html', data=data)
 
 @app.route('/cryptoChart', methods=['GET', 'POST'])   #, methods=['GET', 'POST']
 def cryptoChart():
     symbolGet = request.args.get("crypto_select")
+    
     graphJSON = {"line": cryptoChartService.plotlyChartService(collection, symbolGet),
                 "candle": cryptoChartService.plotlyChartServiceCandle(collection, symbolGet)}
     return render_template('cryptoChart.html', graphJSON=graphJSON)
-
-@app.route('/bnbChart')
-def bnbChart():
-    graphJSON = {"line": bnbChartService.plotlyChartService(collection),
-                "candle": bnbChartService.plotlyChartServiceCandle(collection)}
-    return render_template('bnbChart.html', graphJSON=graphJSON)
-
-@app.route('/ethChart')
-def ethChart():
-    graphJSON = {"line": ethChartService.plotlyChartService(collection),
-                "candle": ethChartService.plotlyChartServiceCandle(collection)}
-    return render_template('ethChart.html', graphJSON=graphJSON)
-
-@app.route('/ltcChart')
-def ltcChart():
-    graphJSON = {"line": ltcChartService.plotlyChartService(collection),
-                "candle": ltcChartService.plotlyChartServiceCandle(collection)}
-    return render_template('ltcChart.html', graphJSON=graphJSON)
-
-@app.route('/neoChart')
-def neoChart():
-    graphJSON = {"line": neoChartService.plotlyChartService(collection),
-                "candle": neoChartService.plotlyChartServiceCandle(collection)}
-    return render_template('neoChart.html', graphJSON=graphJSON)
 
 if __name__ == "__main__":
     print("app")

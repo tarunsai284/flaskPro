@@ -16,7 +16,12 @@ def plotlyChartService(collection, symbol):
         chartData["Date"].append(dateConv) #xAxis
         chartData["Closing Price"].append(ele.get("close"))     #yAxis
 
-    fig = px.line(chartData, x='Date', y='Closing Price')# width=2000, height=600
+    fig = px.line(chartData, x='Date', y='Closing Price')
+    fig.update_layout(
+        title="Price Chart",
+        yaxis_title="Price",
+        xaxis_title="Date",
+    )
 
     graphJSONln = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
     return graphJSONln
@@ -36,11 +41,23 @@ def plotlyChartServiceCandle(collection, symbol):
         chartData["Low"].append(ele.get("low"))
         chartData["Close"].append(ele.get("close"))
 
-    fig = go.Figure(data=[go.Candlestick(x=chartData['Date'], open=chartData['Open'], high=chartData['High'], low=chartData['Low'], close=chartData['Close'])])
+    fig = go.Figure(
+        data=[
+            go.Candlestick(
+                x=chartData['Date'],
+                open=chartData['Open'],
+                high=chartData['High'],
+                low=chartData['Low'],
+                close=chartData['Close']
+            )
+        ]
+    )
 
     fig.update_layout(
-        title="Candlestick",
-        yaxis_title="Price"
+        title="OHLCV chart",
+        yaxis_title="Price",
+        xaxis_title="Date",
+        height = 600
     )
 
     graphJSONcndl = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
