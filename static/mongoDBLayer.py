@@ -48,7 +48,6 @@ def getCrytoDataForTimeRangeProjection(collection, symbol=None, fromTimeStamp=No
         if(fromTimeStamp==None): fromTimeStamp = toTimestamp-31536000000
 
         query["timestamp"] = { "$gte": fromTimeStamp, "$lte": toTimestamp }
-        print("query: {}".format(query))
 
         if(projection):
             if(sortTimestamp!=pymongo.ASCENDING): 

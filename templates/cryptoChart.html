@@ -6,19 +6,17 @@
     <br>
 
     <!-- Made text color white -->
-    <form action="/cryptoChart"  id="cryptoList" style="margin-top:5px;">
+    <form action="/cryptoChart"  id="cryptoList">
 
-        <div class="container d-flex flex-row justify-content-between" style="margin-top: 10px;">
-            
-            
-            <button class="btn btn-outline-light btn-lg p-3" style="margin-bottom: 70px; width: 200px;"  type="radio" id="BTC" name="crypto_select" value="BTC"><img src="https://bitcoin.org/img/icons/opengraph.png?1648897668" width="40" alt="" srcset=""> Bitcoin</button>
-            <button class="btn btn-outline-light btn-lg p-3" style="margin-bottom: 70px; width: 200px;" type="radio" id="BNB" name="crypto_select" value="BNB"><img src="https://upload.wikimedia.org/wikipedia/commons/f/fc/Binance-coin-bnb-logo.png" width="40" alt="bnb" srcset=""> Binance Coin</button>
-            <button class="btn btn-outline-light btn-lg p-3" style="margin-bottom: 70px; width: 200px;" type="radio" id="ETH" name="crypto_select" value="ETH" ><img src="https://www.seekpng.com/png/full/193-1936896_bitseven-ethereum-balance-blue-ethereum-logo.png" width="40" alt="" srcset="">Ethereum</button>
-            <button class="btn btn-outline-light btn-lg p-3" style="margin-bottom: 70px; width: 200px;" type="radio" id="LTC" name="crypto_select" value="LTC" ><img src="https://gallery.yopriceville.com/var/albums/Free-Clipart-Pictures/Money.PNG/Litecoin_LTC_Cryptocurrency_PNG_Clip_Art_Image.png?m=1529493510" width="40" alt="" srcset="">Litecoin</button>
-            <button class="btn btn-outline-light btn-lg p-3" style="margin-bottom: 70px; width: 200px;" type="radio" id="NEO" name="crypto_select" value="NEO" ><img src="https://www.pinclipart.com/picdir/big/387-3874363_download-svg-download-png-neo-coin-logo-clipart.png" width="40" alt="" srcset="">NEO</button>
+        <div class="container">
+            <button class="btn btn-outline-light btn-lg p-3" type="radio" id="BTC" name="crypto_select" value="BTC"><img src="https://bitcoin.org/img/icons/opengraph.png?1648897668" width="40" alt="" srcset=""> Bitcoin</button>
+            <button class="btn btn-outline-light btn-lg p-3" type="radio" id="BNB" name="crypto_select" value="BNB"><img src="https://upload.wikimedia.org/wikipedia/commons/f/fc/Binance-coin-bnb-logo.png" width="40" alt="bnb" srcset=""> Binance Coin</button>
+            <button class="btn btn-outline-light btn-lg p-3" type="radio" id="ETH" name="crypto_select" value="ETH" ><img src="https://www.seekpng.com/png/full/193-1936896_bitseven-ethereum-balance-blue-ethereum-logo.png" width="40" alt="" srcset="">Ethereum</button>
+            <button class="btn btn-outline-light btn-lg p-3" type="radio" id="LTC" name="crypto_select" value="LTC" ><img src="https://gallery.yopriceville.com/var/albums/Free-Clipart-Pictures/Money.PNG/Litecoin_LTC_Cryptocurrency_PNG_Clip_Art_Image.png?m=1529493510" width="40" alt="" srcset="">Litecoin</button>
+            <button class="btn btn-outline-light btn-lg p-3" type="radio" id="NEO" name="crypto_select" value="NEO" ><img src="https://www.pinclipart.com/picdir/big/387-3874363_download-svg-download-png-neo-coin-logo-clipart.png" width="40" alt="" srcset="">NEO</button>
             <!-- <button type="submit">OK</button> -->
         </div>
-    </form><br>
+    </form>
 
     <div class="row">
         
@@ -26,19 +24,14 @@
             <div id='chart-content' class='chart-content' style="width: 100%; height: 500px;"></div>
         </div>
     </div>
-    <body>
-
+    <script>
+        if(document.getElementById('BTC').checked) {
+            document.getElementById('chart_title').innerText="Bitcoin"
+        }else if(document.getElementById('BTC').checked) {
+            document.getElementById('chart_title').innerText="Binance"
+        }
+    </script>
         
-
-        <script>
-            if(document.getElementById('BTC').checked) {
-             document.getElementById('chart_title').innerText="Bitcoin"
-            }else if(document.getElementById('BTC').checked) {
-                document.getElementById('chart_title').innerText="Binance"
-            }
-        </script>
-        
-    </body>
 {% endblock %}
 
 {% block chart1 %} 

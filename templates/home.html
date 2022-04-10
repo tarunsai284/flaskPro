@@ -1,22 +1,44 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1 class="text-white" style="text-align: center;">Welcome to Crypto Currency</h1>
-    <body>
-        <h2 class="text-white" style="font-size: 20px; text-align: center;"><br>Please select a Crypto Currency from the list below</h2>
+    <div class="container">
+        <div style="text-align: center;">
+            <h1 class="text-white" style="margin-bottom: 20px;"> Welcome to Crypto Currency </h1>
+            <h4 class="text-white" style="margin-bottom: 20px;"> Please select a Crypto Currency from the list below </h4>
+        </div>
 
         <form action="/cryptoChart" id="cryptoList">
-  
-            <div class="container d-flex flex-column" style="margin-top: 50px; text-align: center; align-items: center;">
-
-                <button class="btn btn-outline-light btn-lg p-3" style="margin-bottom: 20px; width: 200px;" type="radio" id="crypto_type" name="crypto_select" value="BTC" checked type=""><img src="https://bitcoin.org/img/icons/opengraph.png?1648897668" width="40" alt="" srcset=""> Bitcoin</button>
-                <button class="btn btn-outline-light btn-lg p-3" style="margin-bottom: 20px; width: 200px;" type="radio" id="crypto_type" name="crypto_select" value="BNB" type=""><img src="https://upload.wikimedia.org/wikipedia/commons/f/fc/Binance-coin-bnb-logo.png" width="40" alt="bnb" srcset=""> Binance Coin</button>
-                <button class="btn btn-outline-light btn-lg p-3" style="margin-bottom: 20px; width: 200px;" type="radio" id="crypto_type" name="crypto_select" value="ETH" type=""><img src="https://www.seekpng.com/png/full/193-1936896_bitseven-ethereum-balance-blue-ethereum-logo.png" width="40" alt="" srcset="">Ethereum</button>
-                <button class="btn btn-outline-light btn-lg p-3" style="margin-bottom: 20px; width: 200px;" type="radio" id="crypto_type" name="crypto_select" value="LTC" type=""><img src="https://gallery.yopriceville.com/var/albums/Free-Clipart-Pictures/Money.PNG/Litecoin_LTC_Cryptocurrency_PNG_Clip_Art_Image.png?m=1529493510" width="40" alt="" srcset="">Litecoin</button>
-                <button class="btn btn-outline-light btn-lg p-3" style="margin-bottom: 20px; width: 200px;" type="radio" id="crypto_type" name="crypto_select" value="NEO" type=""><img src="https://www.pinclipart.com/picdir/big/387-3874363_download-svg-download-png-neo-coin-logo-clipart.png" width="40" alt="" srcset="">NEO</button>
-                <!-- <button type="submit">OK</button> -->
+            <div class="row mb-3">
+                <div class="col-sm-4"></div>
+                <div class="col-sm-4">
+                    <button class="btn btn-outline-light btn-lg p-3 btn-block" type="radio" id="crypto_type" name="crypto_select" value="BTC" checked type="">
+                        <img src="https://bitcoin.org/img/icons/opengraph.png?1648897668" width="40" alt="" srcset="" /> Bitcoin</button>
+                </div>
             </div>
-        </form><br>
-        
-    </body>
+            <div class="row mb-3">
+                <div class="col-sm-4"></div>
+                <div class="col-sm-4">
+                    <button class="btn btn-outline-light btn-lg p-3 btn-block" type="radio" id="crypto_type" name="crypto_select" value="BNB" type=""><img src="https://upload.wikimedia.org/wikipedia/commons/f/fc/Binance-coin-bnb-logo.png" width="40" alt="bnb" srcset=""> Binance Coin</button>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-sm-4"></div>
+                <div class="col-sm-4">
+                    <button class="btn btn-outline-light btn-lg p-3 btn-block" type="radio" id="crypto_type" name="crypto_select" value="ETH" type=""><img src="https://www.seekpng.com/png/full/193-1936896_bitseven-ethereum-balance-blue-ethereum-logo.png" width="40" alt="" srcset="">Ethereum</button>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-sm-4"></div>
+                <div class="col-sm-4">
+                    <button class="btn btn-outline-light btn-lg p-3 btn-block" type="radio" id="crypto_type" name="crypto_select" value="LTC" type=""><img src="https://gallery.yopriceville.com/var/albums/Free-Clipart-Pictures/Money.PNG/Litecoin_LTC_Cryptocurrency_PNG_Clip_Art_Image.png?m=1529493510" width="40" alt="" srcset="">Litecoin</button>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-sm-4"></div>
+                <div class="col-sm-4">
+                    <button class="btn btn-outline-light btn-lg p-3 btn-block" type="radio" id="crypto_type" name="crypto_select" value="NEO" type=""><img src="https://www.pinclipart.com/picdir/big/387-3874363_download-svg-download-png-neo-coin-logo-clipart.png" width="40" alt="" srcset="">NEO</button>
+                </div>
+            </div>
+        </form>
+    </div>
 {% endblock %}
