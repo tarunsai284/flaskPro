@@ -1,0 +1,99 @@
+{
+    "info": {
+        "_postman_id": "1377bd8e-375f-4ecc-816c-2224938fbcc6",
+        "name": "Jay",
+        "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Get_All_Items",
+            "id": "62e521a0-315f-482c-8073-49aa9f214bf1",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text"
+                    },
+                    {
+                        "key": "api-key",
+                        "value": "l17RAcH1Q5baLt84YLysX99kAIOgpAV59NShGtrSZM26nyXxDi1YSwv9rknq9WbS",
+                        "type": "text"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\"collection\":\"OHLCV\",\r\n\"database\":\"crypto\",\r\n\"dataSource\":\"cluster\",\r\n\"filter\": {}\r\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": "https://data.mongodb-api.com/app/data-ultac/endpoint/data/beta/action/find"
+            },
+            "response": []
+        },
+        {
+            "name": "Find_By_Range",
+            "id": "37a0cfe9-85f3-4278-87f3-cd1823e8041f",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text"
+                    },
+                    {
+                        "key": "api-key",
+                        "value": "l17RAcH1Q5baLt84YLysX99kAIOgpAV59NShGtrSZM26nyXxDi1YSwv9rknq9WbS",
+                        "type": "text"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\r\n    \"collection\":\"OHLCV\",\r\n    \"database\":\"crypto\",\r\n    \"dataSource\":\"cluster\",\r\n    \"filter\":{\"close\":{\"$gt\": 380 , \"$lt\":450}}\r\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": "https://data.mongodb-api.com/app/data-ultac/endpoint/data/beta/action/find"
+            },
+            "response": []
+        },
+        {
+            "name": "Find_By_ID",
+            "id": "4ed7749a-4b41-4e49-80d8-1d5d44dda681",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text"
+                    },
+                    {
+                        "key": "api-key",
+                        "value": "l17RAcH1Q5baLt84YLysX99kAIOgpAV59NShGtrSZM26nyXxDi1YSwv9rknq9WbS",
+                        "type": "text"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\"collection\":\"OHLCV\",\r\n\"database\":\"crypto\",\r\n\"dataSource\":\"cluster\",\r\n\"filter\": {\r\n         \"_id\": { \"$oid\": \"625205f759535ed04d1c87f8\" }\r\n    }\r\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": "https://data.mongodb-api.com/app/data-ultac/endpoint/data/beta/action/findOne"
+            },
+            "response": []
+        }
+    ]
+}
