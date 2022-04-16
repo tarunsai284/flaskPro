@@ -2,7 +2,7 @@ import json, plotly
 import static.mongoDBLayer as mongoLayer
 import plotly.express as px
 import plotly.graph_objects as go
-import datetime, time
+import datetime
 
 def plotlyChartService(collection, symbol):
     fromTimeStamp=1609459200000

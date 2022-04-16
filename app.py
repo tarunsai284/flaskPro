@@ -1,23 +1,14 @@
-from flask import Flask, jsonify, request, render_template, Response
-import logging, logging.config, constants, yaml 
+from flask import Flask, request, render_template, Response
+import constants 
 from static.mongoClient import setupMongoClient
-import static.mongoDBLayer as mongoLayer
+from static.cronJob import setupCronJob
 import services.cryptoChartService as cryptoChartService
-#import services.btcChartService as btcChartService
-import services.bnbChartService as bnbChartService
-import services.ethChartService as ethChartService
-import services.ltcChartService as ltcChartService
-import services.neoChartService as neoChartService
-
 
 app = Flask(__name__)
 app.config.from_object('config')
 db = setupMongoClient(app)
 collection = db[constants.OHLCV]
-
-with open('./static/logConfig.yaml', 'r') as f:
-    config = yaml.safe_load(f.read())
-    logging.config.dictConfig(config)
+setupCronJob(collection)
 
 @app.route('/')
 def index():
@@ -47,6 +38,7 @@ def cryptoChart():
     graphJSON = {"line": cryptoChartService.plotlyChartService(collection, symbolGet),
                 "candle": cryptoChartService.plotlyChartServiceCandle(collection, symbolGet)}
     return render_template('cryptoChart.html', graphJSON=graphJSON)
+
 
 if __name__ == "__main__":
     print("app")

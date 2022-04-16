@@ -1,8 +1,6 @@
-import logging
-from flask_pymongo import pymongo, PyMongo
+import logging, time
+from flask_pymongo import pymongo
 from string_utils import *
-import constants, time
-import logging
 
 # write your database CRUD functions here 
 # We have indexed the file according to timestamp and symbol, CRUD operations will be faster on these fields
@@ -63,3 +61,19 @@ def getCrytoDataForTimeRangeProjection(collection, symbol=None, fromTimeStamp=No
         print(e)
 
     return result
+
+def dailyUpdate(collection, cryptoList):
+
+    query={}
+    result={}
+    try: 
+        if(collection==None): raise ValueError("Collection cannont be null")
+        if not cryptoList: raise ValueError("cryptoList cannot be empty")
+        
+        collection.insert_many(cryptoList)
+    except Exception as e:
+        print("Exception while running cron job")
+
+    return result
+
+
